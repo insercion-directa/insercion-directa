@@ -8,15 +8,15 @@ public class GeneradorNumeros {
 	
 	public static void main(String[] args) {
 		GeneradorNumeros g = new GeneradorNumeros();
-		int[] a = g.makeSequence(1,50000);
-		a = g.shuffle(a);
+		int[] a = g.makeSequence(1,100000);
+		//a = g.shuffle(a); //Funcion para desordenar el arreglo
+		a = g.invert(a); // Funcion para invertir el arreglo
 		try {
 
 			String nums = Arrays.toString(a);
 			nums = nums.substring(1, nums.length()-1);
 			File file = new File("nums.in");
 
-			// if file doesnt exists, then create it
 			if (!file.exists()) {
 				file.createNewFile();
 			}
@@ -45,7 +45,18 @@ public class GeneradorNumeros {
 	    }
 	    return a;
 	}
-	 
+	
+	public int[] invert(int[] a)
+	{
+	    int n = a.length - 1;
+	    for (int i = 0; i < n; i++)
+	    {
+	        a[i] = a[n];
+	        n--;
+	    }
+	    return a;
+	}
+	
 	public int[] makeSequence(int begin, int end)
 	{
 	    if(end < begin)
