@@ -8,27 +8,22 @@ import java.util.Arrays;
 
 public class InsercionDirectaTest {
 	public static void main(String[] args) {
-
 		BufferedReader br = null;
 		InsercionDirectaTest i = new InsercionDirectaTest();
-		
 		try {
-
 			String sCurrentLine;
 			br = new BufferedReader(new FileReader("nums.in"));
 			sCurrentLine = br.readLine();
-			//System.out.println(sCurrentLine);
 			int[] nums = stringToInt(sCurrentLine);
-			long startTime = System.nanoTime();
-			int[] sortArray = insertSort(nums);
-			long endTime = System.nanoTime();
+			long startTime = System.nanoTime(); // Tiempo de inicio
 			
-			long duration = (endTime - startTime) / 1000000;
+			int[] sortArray = insertSort(nums); // funcion de ordenacion por insercion directa
 			
-			System.out.println(duration);
+			long endTime = System.nanoTime(); // Tiempo final
 			
-			//System.out.println(Arrays.toString(sortArray));
+			long duration = (endTime - startTime) / 1000000; // En milisegundos
 			
+			System.out.println(duration); // Imprimir duracion
 			
 			try {
 
@@ -36,7 +31,6 @@ public class InsercionDirectaTest {
 				strNums = strNums.substring(1, strNums.length()-1);
 				File file = new File("nums.out");
 
-				// if file doesnt exists, then create it
 				if (!file.exists()) {
 					file.createNewFile();
 				}
@@ -76,12 +70,12 @@ public class InsercionDirectaTest {
 	public static int[] insertSort(int[] A){
 		  for(int i = 1; i < A.length; i++){
 		    int value = A[i];
-		    int j = i - 1;
-		    while(j >= 0 && A[j] > value){
-		      A[j + 1] = A[j];
-		      j = j - 1;
+		    int tmp = i - 1;
+		    while(tmp >= 0 && A[tmp] > value){
+		      A[tmp + 1] = A[tmp];
+		      tmp = tmp - 1;
 		    }
-		    A[j + 1] = value;
+		    A[tmp + 1] = value;
 		  }
 		  return A;
 	}
